@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Phone, Mail, MessageSquare, CheckCircle } from "lucide-react";
+import { Phone, Mail, MessageSquare, CheckCircle, Settings } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const { toast } = useToast();
+  const [webhookUrl, setWebhookUrl] = useState("");
+  const [showWebhookInput, setShowWebhookInput] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     business: "",
@@ -20,14 +22,37 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!webhookUrl) {
+      toast({
+        title: "Setup Required",
+        description: "Please enter your Zapier webhook URL in the settings above.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Consultation Request Received!",
-        description: "We'll call you within 24 hours to schedule your free consultation.",
+    try {
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify({
+          ...formData,
+          timestamp: new Date().toISOString(),
+          source: "Trade Solutions Website"
+        }),
       });
+
+      toast({
+        title: "Consultation Request Sent!",
+        description: "Your request has been sent to Google Sheets. We'll contact you within 24 hours.",
+      });
+      
       setFormData({
         name: "",
         business: "",
@@ -36,8 +61,16 @@ const Contact = () => {
         email: "",
         message: ""
       });
+    } catch (error) {
+      console.error("Error sending to webhook:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send your request. Please try again or call us directly.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -78,6 +111,39 @@ const Contact = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="card-elegant">
+              {/* Webhook Setup */}
+              <div className="mb-6 p-4 bg-muted/30 rounded-lg border border-muted">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center space-x-2">
+                    <Settings className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-sm font-medium text-muted-foreground">Zapier Integration Setup</span>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowWebhookInput(!showWebhookInput)}
+                  >
+                    {showWebhookInput ? "Hide" : "Setup"}
+                  </Button>
+                </div>
+                
+                {showWebhookInput && (
+                  <div className="space-y-2">
+                    <Label htmlFor="webhookUrl" className="text-xs">
+                      Zapier Webhook URL (Create a Zap with webhook trigger → Google Sheets)
+                    </Label>
+                    <Input
+                      id="webhookUrl"
+                      value={webhookUrl}
+                      onChange={(e) => setWebhookUrl(e.target.value)}
+                      placeholder="https://hooks.zapier.com/hooks/catch/..."
+                      className="text-sm"
+                    />
+                  </div>
+                )}
+              </div>
+
               <h3 className="text-2xl font-bold text-foreground mb-6">
                 Schedule Your Free Consultation
               </h3>
