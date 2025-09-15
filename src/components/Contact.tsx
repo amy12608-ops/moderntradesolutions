@@ -252,11 +252,11 @@ const Contact = () => {
                   Call us directly for immediate consultation scheduling and answers to your questions.
                 </p>
                 <a
-                  href="tel:437425425"
+                  href="tel:4374256969"
                   className="btn-hero inline-flex items-center space-x-2 bg-accent hover:bg-accent-light text-accent-foreground text-xl font-bold py-4 px-8"
                 >
                   <Phone className="w-6 h-6" />
-                  <span>437-425-425</span>
+                  <span>437-425-6969</span>
                 </a>
                 <p className="text-primary-foreground/80 text-sm mt-4">
                   Monday - Friday: 8 AM - 6 PM<br />
