@@ -70,11 +70,11 @@ const CallToAction = () => {
               </Button>
               
               <a
-                href="tel:437425425"
+                href="tel:4374256969"
                 className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center space-x-2 text-lg"
               >
                 <Phone className="w-5 h-5" />
-                <span>Call Now: 437-425-425</span>
+                <span>Call Now: 437-425-6969</span>
               </a>
             </div>
           </div>
