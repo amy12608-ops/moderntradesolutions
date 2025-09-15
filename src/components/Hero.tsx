@@ -34,11 +34,11 @@ const Hero = () => {
                 <ArrowRight className="w-5 h-5" />
               </Button>
               <a
-                href="tel:437425425"
+                href="tel:4374256969"
                 className="btn-secondary flex items-center justify-center space-x-2 text-lg"
               >
                 <Phone className="w-5 h-5" />
-                <span className="font-bold">437-425-425</span>
+                <span className="font-bold">437-425-6969</span>
               </a>
             </div>
 
