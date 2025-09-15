@@ -68,11 +68,11 @@ const Navigation = () => {
           {/* CTA Button & Phone */}
           <div className="hidden md:flex items-center space-x-4">
             <a
-              href="tel:437425425"
+              href="tel:4374256969"
               className="flex items-center space-x-2 text-primary hover:text-primary-light transition-colors"
             >
               <Phone className="w-4 h-4" />
-              <span className="font-semibold">437-425-425</span>
+              <span className="font-semibold">437-425-6969</span>
             </a>
             <Button
               onClick={() => scrollToSection('contact')}
@@ -133,11 +133,11 @@ const Navigation = () => {
               </button>
               <div className="pt-4 border-t border-border/50">
                 <a
-                  href="tel:437425425"
+                  href="tel:4374256969"
                   className="flex items-center space-x-2 text-primary hover:text-primary-light transition-colors mb-4"
                 >
                   <Phone className="w-4 h-4" />
-                  <span className="font-semibold">437-425-425</span>
+                  <span className="font-semibold">437-425-6969</span>
                 </a>
                 <Button
                   onClick={() => scrollToSection('contact')}
