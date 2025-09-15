@@ -18,7 +18,7 @@ const Footer = () => {
               <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
                 <span className="text-accent-foreground font-bold text-lg">TS</span>
               </div>
-              <span className="text-xl font-bold">TradeSolutions</span>
+              <span className="text-xl font-bold">ModernTradeSolutions</span>
             </div>
             <p className="text-primary-foreground/80 leading-relaxed">
               Custom digital solutions built specifically for tradespeople. 
