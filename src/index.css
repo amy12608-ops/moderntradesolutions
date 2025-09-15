@@ -2,41 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Professional Trades Business Design System */
 
 @layer base {
   :root {
+    /* Core Brand Colors - Professional Blue & Safety Orange */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 210 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary: Professional Deep Blue */
+    --primary: 210 88% 25%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 210 75% 35%;
+    --primary-dark: 210 95% 18%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary: Neutral Grays */
+    --secondary: 210 15% 96%;
+    --secondary-foreground: 210 25% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 15% 96%;
+    --muted-foreground: 210 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent: Safety Orange */
+    --accent: 25 95% 55%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 25 90% 65%;
+    --accent-dark: 25 100% 45%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 210 88% 25%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Professional Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent-light)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary-dark)) 0%, hsl(var(--primary)) 50%, hsl(var(--primary-light)) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+
+    /* Professional Shadows */
+    --shadow-elegant: 0 20px 50px -12px hsl(var(--primary) / 0.15);
+    --shadow-card: 0 4px 20px -2px hsl(var(--primary) / 0.08);
+    --shadow-button: 0 8px 25px -6px hsl(var(--accent) / 0.3);
+
+    /* Smooth Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +121,52 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Professional Button Variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-accent to-accent-light text-accent-foreground font-semibold py-4 px-8 rounded-xl shadow-[var(--shadow-button)] hover:shadow-lg transition-[var(--transition-smooth)] hover:scale-105;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-primary-light text-primary-foreground font-semibold py-3 px-6 rounded-lg shadow-[var(--shadow-card)] hover:shadow-lg transition-[var(--transition-smooth)] hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground border-2 border-primary/20 font-semibold py-3 px-6 rounded-lg hover:bg-primary hover:text-primary-foreground transition-[var(--transition-smooth)] hover:-translate-y-0.5;
+  }
+
+  /* Professional Cards */
+  .card-elegant {
+    @apply bg-card rounded-2xl shadow-[var(--shadow-card)] border border-border/50 p-8 hover:shadow-[var(--shadow-elegant)] transition-[var(--transition-smooth)] hover:-translate-y-1;
+  }
+
+  /* Section Backgrounds */
+  .section-gradient {
+    @apply bg-gradient-to-b from-background to-muted;
+  }
+
+  .section-primary {
+    @apply bg-gradient-to-br from-primary-dark via-primary to-primary-light text-primary-foreground;
+  }
+
+  /* Typography Enhancements */
+  .heading-hero {
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent leading-tight;
+  }
+
+  .heading-section {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight;
+  }
+
+  .text-hero-sub {
+    @apply text-xl md:text-2xl text-muted-foreground leading-relaxed;
   }
 }
