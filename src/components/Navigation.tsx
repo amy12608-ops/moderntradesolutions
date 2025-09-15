@@ -22,7 +22,7 @@ const Navigation = () => {
             <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-light rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">TS</span>
             </div>
-            <span className="text-xl font-bold text-primary">TradeSolutions</span>
+            <span className="text-xl font-bold text-primary">ModernTradeSolutions</span>
           </div>
 
           {/* Desktop Navigation */}
